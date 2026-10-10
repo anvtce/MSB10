@@ -14,3 +14,7 @@ wheels/
 
 # Processed data (regenerated from raw)
 data/processed/
+
+# Local reveal.js library for offline slides (re-downloadable)
+reports/reveal.js/
+.playwright-mcp/
