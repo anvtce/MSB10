@@ -8,7 +8,7 @@ Thư mục này chứa các nguồn (sources) để nạp vào **NotebookLM** nh
 |---|---|---|
 | `00_TAT_CA_trong_1_file.md` / `.html` | **Nạp 1 nguồn duy nhất** — gộp tất cả nội dung | Markdown / HTML |
 | `01_bao_cao_day_du.md` / `.html` | Báo cáo đầy đủ (nguồn chính, nhiều số liệu) | Markdown / HTML |
-| `02_kich_ban_thuyet_trinh_20phut.md` / `.html` | Kịch bản nói từng phần, có mốc thời gian | Markdown / HTML |
+| `02_kich_ban_thuyet_trinh_20phut.md` / `.html` | **Kịch bản độc thoại 1 người** (xưng "em"), câu ngắn có dấu `[ngắt]`, khớp từng slide — dùng để tự đọc / lồng tiếng / tạo video người ảo | Markdown / HTML |
 | `03_hoi_dap_QnA.md` / `.html` | Câu hỏi phản biện & câu trả lời | Markdown / HTML |
 | `04_so_lieu_va_bieu_do.md` / `.html` | Bảng số liệu + mô tả biểu đồ bằng lời | Markdown / HTML |
 
