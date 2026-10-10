@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Ứng dụng AI vào Quản trị Vận hành — Tài liệu NotebookLM</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      white-space: pre-wrap;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Ứng dụng AI vào Quản trị Vận hành — Tài liệu
+NotebookLM</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#ứng-dụng-ai-vào-quản-trị-vận-hành-báo-cáo-đầy-đủ"
+id="toc-ứng-dụng-ai-vào-quản-trị-vận-hành-báo-cáo-đầy-đủ">Ứng dụng AI
+vào Quản trị Vận hành — Báo cáo đầy đủ</a>
+<ul>
+<li><a
+href="#phân-tích-quy-trình-bằng-process-mining-ví-dụ-quy-trình-cấp-mã-khuyến-mãi"
+id="toc-phân-tích-quy-trình-bằng-process-mining-ví-dụ-quy-trình-cấp-mã-khuyến-mãi">Phân
+tích quy trình bằng Process Mining (Ví dụ: Quy trình cấp mã khuyến
+mãi)</a></li>
+<li><a href="#bối-cảnh-và-vấn-đề" id="toc-bối-cảnh-và-vấn-đề">1. Bối
+cảnh và vấn đề</a></li>
+<li><a href="#phương-pháp-process-mining"
+id="toc-phương-pháp-process-mining">2. Phương pháp: Process
+Mining</a></li>
+<li><a href="#dữ-liệu" id="toc-dữ-liệu">3. Dữ liệu</a></li>
+<li><a href="#quy-trình-hiện-tại-as-is-và-điểm-nghẽn"
+id="toc-quy-trình-hiện-tại-as-is-và-điểm-nghẽn">4. Quy trình hiện tại
+(AS-IS) và điểm nghẽn</a>
+<ul>
+<li><a href="#dấu-hiệu-làm-lại" id="toc-dấu-hiệu-làm-lại">4.1. Dấu hiệu
+làm lại</a></li>
+<li><a href="#thời-gian-xử-lý" id="toc-thời-gian-xử-lý">4.2. Thời gian
+xử lý</a></li>
+<li><a href="#điểm-nghẽn-chờ-lâu-nhất-sau-bước-nào"
+id="toc-điểm-nghẽn-chờ-lâu-nhất-sau-bước-nào">4.3. Điểm nghẽn — chờ lâu
+nhất sau bước nào</a></li>
+<li><a href="#ai-đang-gánh-việc" id="toc-ai-đang-gánh-việc">4.4. Ai đang
+gánh việc</a></li>
+</ul></li>
+<li><a href="#quy-trình-mới-có-ai-to-be"
+id="toc-quy-trình-mới-có-ai-to-be">5. Quy trình mới có AI
+(TO-BE)</a></li>
+<li><a href="#kết-quả-so-sánh-trước-và-sau"
+id="toc-kết-quả-so-sánh-trước-và-sau">6. Kết quả so sánh trước và
+sau</a>
+<ul>
+<li><a href="#thời-gian-xử-lý-giảm-mạnh"
+id="toc-thời-gian-xử-lý-giảm-mạnh">6.1. Thời gian xử lý giảm
+mạnh</a></li>
+<li><a href="#giải-phóng-nhân-lực" id="toc-giải-phóng-nhân-lực">6.2.
+Giải phóng nhân lực</a></li>
+<li><a href="#giảm-làm-lại" id="toc-giảm-làm-lại">6.3. Giảm làm
+lại</a></li>
+</ul></li>
+<li><a href="#kết-luận-và-đề-xuất" id="toc-kết-luận-và-đề-xuất">7. Kết
+luận và đề xuất</a></li>
+<li><a href="#mở-đầu-000-100" id="toc-mở-đầu-000-100">Mở đầu (0:00 –
+1:00)</a></li>
+<li><a href="#phần-1-bối-cảnh-mục-tiêu-100-300"
+id="toc-phần-1-bối-cảnh-mục-tiêu-100-300">Phần 1 — Bối cảnh &amp; Mục
+tiêu (1:00 – 3:00)</a></li>
+<li><a href="#phần-2-dữ-liệu-cách-làm-300-500"
+id="toc-phần-2-dữ-liệu-cách-làm-300-500">Phần 2 — Dữ liệu &amp; Cách làm
+(3:00 – 5:00)</a></li>
+<li><a href="#phần-3-quy-trình-hiện-tại-điểm-nghẽn-500-900"
+id="toc-phần-3-quy-trình-hiện-tại-điểm-nghẽn-500-900">Phần 3 — Quy trình
+hiện tại &amp; điểm nghẽn (5:00 – 9:00)</a></li>
+<li><a href="#phần-4-đo-hiệu-quả-900-1300"
+id="toc-phần-4-đo-hiệu-quả-900-1300">Phần 4 — Đo hiệu quả (9:00 –
+13:00)</a></li>
+<li><a href="#phần-5-quy-trình-mới-có-ai-1300-1600"
+id="toc-phần-5-quy-trình-mới-có-ai-1300-1600">Phần 5 — Quy trình mới có
+AI (13:00 – 16:00)</a></li>
+<li><a href="#phần-6-so-sánh-kết-quả-1600-1900"
+id="toc-phần-6-so-sánh-kết-quả-1600-1900">Phần 6 — So sánh kết quả
+(16:00 – 19:00)</a></li>
+<li><a href="#phần-7-kết-luận-1900-2000"
+id="toc-phần-7-kết-luận-1900-2000">Phần 7 — Kết luận (19:00 –
+20:00)</a></li>
+</ul></li>
+<li><a href="#section" id="toc-section">════════════════════</a></li>
+<li><a href="#số-liệu-mô-tả-biểu-đồ-bằng-lời"
+id="toc-số-liệu-mô-tả-biểu-đồ-bằng-lời">Số liệu &amp; Mô tả biểu đồ bằng
+lời</a>
+<ul>
+<li><a href="#đề-tài-ứng-dụng-ai-vào-quản-trị-vận-hành-process-mining"
+id="toc-đề-tài-ứng-dụng-ai-vào-quản-trị-vận-hành-process-mining">Đề tài:
+Ứng dụng AI vào Quản trị Vận hành — Process Mining</a></li>
+<li><a href="#a.-bảng-số-liệu-tổng-hợp"
+id="toc-a.-bảng-số-liệu-tổng-hợp">A. Bảng số liệu tổng hợp</a>
+<ul>
+<li><a href="#a1.-quy-mô-dữ-liệu" id="toc-a1.-quy-mô-dữ-liệu">A1. Quy mô
+dữ liệu</a></li>
+<li><a href="#a2.-thời-gian-xử-lý-một-hồ-sơ-cycle-time-đơn-vị-giờ"
+id="toc-a2.-thời-gian-xử-lý-một-hồ-sơ-cycle-time-đơn-vị-giờ">A2. Thời
+gian xử lý một hồ sơ (cycle time, đơn vị: giờ)</a></li>
+<li><a href="#a3.-điểm-nghẽn-thời-gian-chờ-trung-bình-sau-mỗi-bước-giờ"
+id="toc-a3.-điểm-nghẽn-thời-gian-chờ-trung-bình-sau-mỗi-bước-giờ">A3.
+Điểm nghẽn — thời gian chờ trung bình sau mỗi bước (giờ)</a></li>
+<li><a href="#a4.-phân-bổ-công-việc-theo-nguồn-lực-số-sự-kiện"
+id="toc-a4.-phân-bổ-công-việc-theo-nguồn-lực-số-sự-kiện">A4. Phân bổ
+công việc theo nguồn lực (số sự kiện)</a></li>
+<li><a href="#a5.-mức-độ-tự-động-hóa-to-be"
+id="toc-a5.-mức-độ-tự-động-hóa-to-be">A5. Mức độ tự động hóa
+(TO-BE)</a></li>
+<li><a href="#a6.-làm-lại-rework" id="toc-a6.-làm-lại-rework">A6. Làm
+lại (rework)</a></li>
+<li><a href="#a7.-phân-bố-theo-kênh-và-chương-trình-as-is"
+id="toc-a7.-phân-bố-theo-kênh-và-chương-trình-as-is">A7. Phân bố theo
+kênh và chương trình (AS-IS)</a></li>
+</ul></li>
+<li><a href="#b.-mô-tả-các-biểu-đồ-bằng-lời"
+id="toc-b.-mô-tả-các-biểu-đồ-bằng-lời">B. Mô tả các biểu đồ (bằng
+lời)</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="ứng-dụng-ai-vào-quản-trị-vận-hành-báo-cáo-đầy-đủ">Ứng dụng AI
+vào Quản trị Vận hành — Báo cáo đầy đủ</h1>
+<h3
+id="phân-tích-quy-trình-bằng-process-mining-ví-dụ-quy-trình-cấp-mã-khuyến-mãi">Phân
+tích quy trình bằng Process Mining (Ví dụ: Quy trình cấp mã khuyến
+mãi)</h3>
+<blockquote>
+<p>Tài liệu này là nguồn chính cho NotebookLM. Nội dung được viết dạng
+văn xuôi, đầy đủ số liệu thực tế, để NotebookLM có thể tạo bản tóm tắt,
+audio overview và kịch bản thuyết trình chính xác.</p>
+</blockquote>
+<hr />
+<h2 id="bối-cảnh-và-vấn-đề">1. Bối cảnh và vấn đề</h2>
+<p>Một doanh nghiệp bán lẻ vận hành nhiều chương trình khuyến mãi, cấp
+mã giảm giá cho khách hàng thông qua bốn kênh: Website, Ứng dụng di
+động, Landing page và QR tại cửa hàng. Mỗi yêu cầu nhận mã của khách đi
+qua một chuỗi bước nghiệp vụ: khách đăng ký, hệ thống ghi nhận, bộ phận
+kiểm tra thông tin, kiểm tra điều kiện, phê duyệt, rồi cấp và gửi mã cho
+khách.</p>
+<p>Vấn đề là phần lớn các bước này được xử lý <strong>thủ công</strong>
+bởi bộ phận Marketing và Chăm sóc khách hàng (CSKH). Hệ quả: thời gian
+xử lý kéo dài và thất thường, khách phải chờ lâu, và quy trình thường
+xuyên rơi vào vòng lặp “yêu cầu khách bổ sung thông tin — khách bổ sung
+— kiểm tra lại” (hiện tượng <em>làm lại</em>, tiếng Anh là
+<em>rework</em>).</p>
+<p>Nhóm nghiên cứu đặt ra ba câu hỏi: 1. Quy trình thực tế đang diễn ra
+như thế nào, và điểm nghẽn nằm ở đâu? 2. Nên đưa AI vào bước nào để tạo
+giá trị lớn nhất? 3. Quy trình mới có AI cải thiện được bao nhiêu về
+thời gian và nhân lực?</p>
+<h2 id="phương-pháp-process-mining">2. Phương pháp: Process Mining</h2>
+<p>Thay vì mô tả quy trình “trên giấy”, nhóm sử dụng <strong>Process
+Mining</strong> — kỹ thuật dựng lại quy trình <strong>thực tế</strong>
+từ dữ liệu nhật ký sự kiện (event log) mà hệ thống tự ghi lại. Mỗi dòng
+nhật ký là một bước đã diễn ra, gồm: mã hồ sơ (Case ID), tên hoạt động
+(Activity), thời điểm (Timestamp), người/bộ phận thực hiện (Resource),
+kênh, chương trình, và kết quả cuối (Thành công/Từ chối).</p>
+<p>Công cụ sử dụng: - <strong>PM4Py</strong> (thư viện Python mã nguồn
+mở): dựng bản đồ quy trình (Directly-Follows Graph), phân tích hiệu
+năng, phát hiện các biến thể quy trình. - <strong>pandas</strong>: tính
+toán các chỉ số. - <strong>matplotlib / seaborn</strong>: trực quan
+hóa.</p>
+<p>Ưu điểm của Process Mining: nó dựa trên dấu vết số có sẵn, nên chỉ ra
+<strong>chính xác và khách quan</strong> nơi quy trình bị chậm — làm cơ
+sở để quyết định “AI nên đặt ở đâu”.</p>
+<h2 id="dữ-liệu">3. Dữ liệu</h2>
+<p>Nhóm phân tích hai bộ nhật ký, mỗi bộ gồm <strong>1.200 hồ
+sơ</strong> khách hàng: - <strong>AS-IS</strong> (quy trình hiện tại,
+thủ công): 12.267 sự kiện. - <strong>TO-BE</strong> (quy trình mới, có
+AI): 12.847 sự kiện.</p>
+<p>Cả hai kịch bản giữ cùng kết quả nghiệp vụ để so sánh công bằng:
+<strong>942 hồ sơ thành công</strong> và <strong>258 hồ sơ bị từ
+chối</strong>.</p>
+<p>Phân bố theo kênh (trên dữ liệu AS-IS): Website 5.399, Ứng dụng
+3.471, Landing page 2.346, QR tại cửa hàng 1.051 sự kiện. Phân bố theo
+chương trình khá đều nhau: MEMBER15, FREESHIP, WELCOME10, SUMMER20 (mỗi
+chương trình khoảng 3.000 sự kiện).</p>
+<h2 id="quy-trình-hiện-tại-as-is-và-điểm-nghẽn">4. Quy trình hiện tại
+(AS-IS) và điểm nghẽn</h2>
+<h3 id="dấu-hiệu-làm-lại">4.1. Dấu hiệu làm lại</h3>
+<p>Khi đếm số lần mỗi hoạt động xuất hiện, bước <em>Kiểm tra thông
+tin</em> chạy tới <strong>1.861 lần</strong> trên 1.200 hồ sơ — cao hơn
+hẳn số hồ sơ. Đây là bằng chứng của việc <strong>làm lại</strong>: nhiều
+hồ sơ phải kiểm tra lại sau khi khách bổ sung thông tin. Cụ thể,
+<strong>32,8% hồ sơ</strong> phải kiểm tra lại ít nhất một lần.</p>
+<h3 id="thời-gian-xử-lý">4.2. Thời gian xử lý</h3>
+<p>Tổng thời gian xử lý một hồ sơ (cycle time) ở quy trình cũ: - Trung
+bình: <strong>28,35 giờ</strong> - Trung vị: 12,61 giờ - P90 (90% hồ sơ
+xong trong khoảng này): <strong>60,44 giờ</strong> - Lâu nhất: 297,73
+giờ (hơn 12 ngày)</p>
+<h3 id="điểm-nghẽn-chờ-lâu-nhất-sau-bước-nào">4.3. Điểm nghẽn — chờ lâu
+nhất sau bước nào</h3>
+<p>Đo khoảng thời gian khách phải chờ sau mỗi bước, các điểm nghẽn lớn
+nhất ở quy trình cũ là: - Sau <em>Yêu cầu bổ sung</em>: chờ trung bình
+<strong>15,86 giờ</strong> - Sau <em>Kiểm tra điều kiện</em>:
+<strong>5,77 giờ</strong> - Sau <em>Ghi nhận đăng ký</em>: 4,81 giờ -
+Sau <em>Bổ sung thông tin</em>: 4,31 giờ - Sau <em>Kiểm tra thông
+tin</em>: 3,00 giờ - Sau <em>Phê duyệt</em>: 1,92 giờ</p>
+<p>Điểm chung: tất cả điểm nghẽn đều rơi vào <strong>các bước làm tay
+của Marketing và CSKH</strong>.</p>
+<h3 id="ai-đang-gánh-việc">4.4. Ai đang gánh việc</h3>
+<p>Ở quy trình cũ, khối lượng thao tác phân bổ: Hệ thống 4.542,
+<strong>Marketing 4.003</strong>, Khách hàng 2.803, CSKH 919 sự kiện.
+Marketing gánh khoảng một phần ba toàn bộ công việc.</p>
+<h2 id="quy-trình-mới-có-ai-to-be">5. Quy trình mới có AI (TO-BE)</h2>
+<p>Dựa trên phân tích trên, nhóm đưa AI vào <strong>đúng các bước đang
+gây nghẽn</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bước cũ (làm tay)</th>
+<th>Đang nghẽn</th>
+<th>Thay bằng (TO-BE)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kiểm tra thông tin (Marketing)</td>
+<td>làm lại 32,8%, chờ ~3h</td>
+<td><strong>AI kiểm tra thông tin</strong> tự động đọc và đối chiếu</td>
+</tr>
+<tr>
+<td>Kiểm tra điều kiện (Marketing)</td>
+<td>chờ ~5,8h</td>
+<td><strong>Tự động kiểm tra điều kiện</strong> theo quy tắc</td>
+</tr>
+<tr>
+<td>Phê duyệt (Marketing)</td>
+<td>chờ ~1,9h</td>
+<td><strong>AI đánh giá bất thường</strong> + tự động cấp mã; chỉ hồ sơ
+nghi ngờ mới chuyển người</td>
+</tr>
+<tr>
+<td>Yêu cầu bổ sung (làm tay)</td>
+<td>chờ ~15,9h</td>
+<td><strong>Yêu cầu bổ sung tự động</strong> ngay lập tức</td>
+</tr>
+<tr>
+<td>Xử lý ngoại lệ</td>
+<td>—</td>
+<td><strong>Marketing xét duyệt ngoại lệ</strong> (giữ con người trong
+vòng lặp)</td>
+</tr>
+</tbody>
+</table>
+<p>Nguyên tắc thiết kế: <strong>AI xử lý phần lớn hồ sơ thông thường,
+con người tập trung vào ngoại lệ</strong> (mô hình human-in-the-loop).
+Nhờ vậy vừa nhanh vừa kiểm soát rủi ro. Trên dữ liệu TO-BE,
+<strong>1.013 hồ sơ (84,4%)</strong> được AI xử lý tự động hoàn toàn,
+chỉ <strong>187 hồ sơ (15,6%)</strong> cần người xét duyệt.</p>
+<h2 id="kết-quả-so-sánh-trước-và-sau">6. Kết quả so sánh trước và
+sau</h2>
+<h3 id="thời-gian-xử-lý-giảm-mạnh">6.1. Thời gian xử lý giảm mạnh</h3>
+<p>Cycle time trung bình giảm từ <strong>28,35 giờ xuống 0,92
+giờ</strong> — tức giảm khoảng <strong>97%</strong>, nhanh hơn gần
+<strong>31 lần</strong>. P90 giảm từ 60,44 giờ xuống 2,02 giờ.</p>
+<p>Ở quy trình mới, thời gian chờ sau mỗi bước đều dưới 1 giờ: lâu nhất
+là sau <em>Yêu cầu bổ sung tự động</em> cũng chỉ 0,92 giờ (so với 15,86
+giờ trước đây).</p>
+<h3 id="giải-phóng-nhân-lực">6.2. Giải phóng nhân lực</h3>
+<p>Khối lượng thao tác của Marketing giảm từ <strong>4.003 xuống còn 187
+lượt</strong> — giảm hơn 95%. Phần việc chuyển sang Hệ thống (7.393) và
+AI / Hệ thống (2.674). Nhân lực Marketing được giải phóng để làm công
+việc giá trị cao hơn (sáng tạo chiến dịch, phân tích khách hàng).</p>
+<h3 id="giảm-làm-lại">6.3. Giảm làm lại</h3>
+<p>Tổng số lần kiểm tra thông tin giảm từ 1.861 xuống 1.651 nhờ AI kiểm
+tra chính xác hơn ngay từ đầu.</p>
+<h2 id="kết-luận-và-đề-xuất">7. Kết luận và đề xuất</h2>
+<p><strong>Kết quả chính:</strong> - Thời gian xử lý trung bình giảm
+~97% (28,35h → 0,92h), nhanh hơn ~31 lần. - Điểm nghẽn được xác định
+khách quan bằng Process Mining, nằm ở các bước làm tay. - Đặt AI đúng
+điểm nghẽn giúp tự động hóa 84,4% hồ sơ. - Giảm tải Marketing từ 4.003
+xuống 187 lượt thao tác.</p>
+<p><strong>Ba bài học về quản trị vận hành:</strong> 1. Đo trước, cải
+tiến sau — quyết định dựa trên dữ liệu thật, không phỏng đoán. 2. AI
+hiệu quả nhất khi gắn đúng điểm nghẽn, không rải đều. 3. Giữ con người
+trong vòng lặp để cân bằng tốc độ và kiểm soát rủi ro.</p>
+<p><strong>Lộ trình áp dụng đề xuất:</strong> - Giai đoạn 1: Đưa AI vào
+kiểm tra thông tin và điều kiện (chỗ nghẽn lớn nhất). - Giai đoạn 2: Tự
+động cấp/gửi mã và cảnh báo bất thường. - Giai đoạn 3: Theo dõi liên tục
+bằng Process Mining để phát hiện quy trình bị lệch.</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr>
+<td><em>Phân tích thực hiện bằng Python + PM4Py trên dữ liệu thực tế:
+1.200 hồ sơ cho mỗi kịch bản.</em></td>
+</tr>
+<tr>
+<td># ════════════════════</td>
+</tr>
+<tr>
+<td># Kịch bản thuyết trình video (~20 phút) ### Đề tài: Ứng dụng AI vào
+Quản trị Vận hành — Process Mining</td>
+</tr>
+<tr>
+<td>&gt; Tài liệu này là <strong>kịch bản nói</strong> cho video thuyết
+trình, chia theo từng phần với mốc thời gian. NotebookLM có thể dùng để
+tạo audio overview hoặc lời dẫn. Giọng văn: nhóm sinh viên trình bày,
+xưng “chúng em / tụi em”.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mở-đầu-000-100">Mở đầu (0:00 – 1:00)</h2>
+<p>“Kính chào thầy/cô và các bạn. Nhóm em xin trình bày đề tài
+<strong>Ứng dụng AI vào quản trị vận hành</strong>. Tụi em sẽ dùng một
+ví dụ rất gần gũi — quy trình cấp mã khuyến mãi của một doanh nghiệp bán
+lẻ — để cho thấy AI giúp quy trình nhanh hơn và nhẹ nhàng hơn ra sao.
+Phần trình bày khoảng 20 phút, gồm 7 phần: bối cảnh, dữ liệu, quy trình
+hiện tại, đo hiệu quả, quy trình mới có AI, so sánh kết quả, và kết
+luận.”</p>
+<h2 id="phần-1-bối-cảnh-mục-tiêu-100-300">Phần 1 — Bối cảnh &amp; Mục
+tiêu (1:00 – 3:00)</h2>
+<p>“Doanh nghiệp chạy khuyến mãi qua 4 kênh: Website, Ứng dụng, Landing
+page và QR tại cửa hàng. Mỗi yêu cầu nhận mã của khách phải đi qua chuỗi
+bước: đăng ký, kiểm tra thông tin, kiểm tra điều kiện, phê duyệt, rồi
+cấp và gửi mã.</p>
+<p>Vấn đề là phần lớn các bước này <strong>làm thủ công</strong> bởi
+Marketing và CSKH. Hậu quả: khách chờ lâu, thời gian xử lý thất thường,
+và hay bị lặp lại cái vòng ‘yêu cầu bổ sung — khách bổ sung — kiểm tra
+lại’.</p>
+<p>Tụi em muốn trả lời ba câu hỏi: Thứ nhất, quy trình thật đang chạy ra
+sao và nghẽn ở đâu? Thứ hai, nên đặt AI vào đâu? Thứ ba, cải thiện được
+bao nhiêu?”</p>
+<h2 id="phần-2-dữ-liệu-cách-làm-300-500">Phần 2 — Dữ liệu &amp; Cách làm
+(3:00 – 5:00)</h2>
+<p>“Để trả lời khách quan, nhóm em dùng <strong>Process Mining</strong>
+— tức là dựng lại quy trình thật từ dữ liệu nhật ký mà hệ thống tự ghi,
+chứ không nhìn quy trình trên giấy.</p>
+<p>Nhóm em có hai bộ dữ liệu, mỗi bộ 1.200 hồ sơ: một bộ quy trình cũ
+làm tay (AS-IS), một bộ quy trình mới có AI (TO-BE). Cả hai cùng có 942
+hồ sơ thành công và 258 bị từ chối, để so sánh công bằng.</p>
+<p>Công cụ tụi em dùng là thư viện PM4Py của Python để vẽ bản đồ quy
+trình và đo điểm nghẽn.”</p>
+<h2 id="phần-3-quy-trình-hiện-tại-điểm-nghẽn-500-900">Phần 3 — Quy trình
+hiện tại &amp; điểm nghẽn (5:00 – 9:00)</h2>
+<p>“Nhìn biểu đồ tần suất, các bạn sẽ thấy bước <em>Kiểm tra thông
+tin</em> chạy tới 1.861 lần, trong khi chỉ có 1.200 hồ sơ. Nghĩa là
+nhiều hồ sơ bị kiểm tra đi kiểm tra lại — 32,8% hồ sơ phải làm lại.</p>
+<p>Tiếp theo là bản đồ quy trình do công cụ tự dựng — đường càng đậm thì
+càng nhiều hồ sơ đi qua.</p>
+<p>Và đây là phần quan trọng nhất: điểm nghẽn. Tụi em đo xem sau mỗi
+bước khách phải chờ bao lâu. Kết quả: chờ lâu nhất là sau bước <em>Yêu
+cầu bổ sung</em> — tới gần <strong>16 tiếng</strong>. Rồi <em>Kiểm tra
+điều kiện</em> gần 6 tiếng, <em>Phê duyệt</em> gần 2 tiếng. Điểm chung
+là: tất cả đều là <strong>những bước làm tay của
+Marketing</strong>.”</p>
+<h2 id="phần-4-đo-hiệu-quả-900-1300">Phần 4 — Đo hiệu quả (9:00 –
+13:00)</h2>
+<p>“Về tổng thời gian xử lý một hồ sơ: trung bình <strong>28 tiếng
+rưỡi</strong>, có hồ sơ kéo dài hơn 12 ngày. Đây là con số rất đáng lo
+cho trải nghiệm khách hàng.</p>
+<p>Về tải công việc: Marketing gánh khoảng một phần ba toàn bộ thao tác,
+tới hơn 4.000 lượt. Rõ ràng bộ phận này đang quá tải vì phải làm tay quá
+nhiều.”</p>
+<h2 id="phần-5-quy-trình-mới-có-ai-1300-1600">Phần 5 — Quy trình mới có
+AI (13:00 – 16:00)</h2>
+<p>“Từ các điểm nghẽn vừa tìm được, nhóm em thiết kế quy trình mới, đưa
+AI vào <strong>đúng chỗ nghẽn</strong>: - Bước kiểm tra thông tin → AI
+tự đọc và đối chiếu. - Kiểm tra điều kiện → tự động theo quy tắc. - Phê
+duyệt → AI đánh giá bất thường rồi tự cấp mã, chỉ hồ sơ nghi ngờ mới
+chuyển cho người. - Yêu cầu bổ sung → gửi tự động ngay lập tức.</p>
+<p>Nguyên tắc là: AI lo phần lớn hồ sơ bình thường, con người chỉ xử lý
+ngoại lệ. Nhờ vậy vừa nhanh vừa an toàn. Trong dữ liệu mới, AI tự động
+hóa được <strong>84,4% hồ sơ</strong>, chỉ 15,6% cần người duyệt.”</p>
+<h2 id="phần-6-so-sánh-kết-quả-1600-1900">Phần 6 — So sánh kết quả
+(16:00 – 19:00)</h2>
+<p>“Và đây là kết quả tụi em tâm đắc nhất: - Thời gian xử lý trung bình
+giảm từ <strong>28,35 giờ xuống 0,92 giờ</strong> — giảm 97%, nhanh hơn
+gần <strong>31 lần</strong>. - Thời gian chờ ở mọi bước giờ đều dưới 1
+tiếng. - Khối lượng việc của Marketing giảm từ <strong>4.003 xuống còn
+187 lượt</strong> — giảm hơn 95%.</p>
+<p>Nghĩa là khách hàng nhận mã gần như tức thì, còn nhân viên được giải
+phóng để làm việc sáng tạo hơn.”</p>
+<h2 id="phần-7-kết-luận-1900-2000">Phần 7 — Kết luận (19:00 –
+20:00)</h2>
+<p>“Tóm lại, nhóm em rút ra ba bài học: Một là <em>đo trước, cải tiến
+sau</em> — phải có dữ liệu thật. Hai là <em>AI hiệu quả nhất khi gắn
+đúng điểm nghẽn</em>, chứ không rải đều. Ba là <em>vẫn giữ con người
+trong vòng lặp</em> để kiểm soát rủi ro.</p>
+<p>Đề xuất lộ trình gồm 3 giai đoạn: trước hết AI hóa khâu kiểm tra, sau
+đó tự động cấp mã, cuối cùng là giám sát quy trình liên tục.</p>
+<p>Nhóm em xin chân thành cảm ơn thầy/cô và các bạn đã lắng nghe. Tụi em
+rất mong nhận được góp ý ạ.”</p>
+<table style="width:6%;">
+<colgroup>
+<col style="width: 5%" />
+</colgroup>
+<tbody>
+<tr>
+<td>### Gợi ý thời lượng theo slide | Phần | Mốc | Thời lượng | |—|—|—|
+| Mở đầu | 0:00 | 1’ | | 1. Bối cảnh | 1:00 | 2’ | | 2. Dữ liệu | 3:00 |
+2’ | | 3. Điểm nghẽn | 5:00 | 4’ | | 4. Hiệu quả | 9:00 | 4’ | | 5. AI
+(TO-BE) | 13:00 | 3’ | | 6. So sánh | 16:00 | 3’ | | 7. Kết luận | 19:00
+| 1’ |</td>
+</tr>
+<tr>
+<td># ════════════════════</td>
+</tr>
+<tr>
+<td># Hỏi &amp; Đáp (Q&amp;A) — chuẩn bị phản biện ### Đề tài: Ứng dụng
+AI vào Quản trị Vận hành — Process Mining</td>
+</tr>
+<tr>
+<td>&gt; Tài liệu giúp NotebookLM và nhóm chuẩn bị trả lời câu hỏi khi
+trình bày/phản biện. Mỗi câu đều dựa trên số liệu thực tế trong báo
+cáo.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>H1: Process Mining là gì, khác gì với vẽ sơ đồ quy trình
+thông thường?</strong> Process Mining dựng lại quy trình <strong>thực
+tế</strong> từ dữ liệu nhật ký hệ thống đã ghi, nên phản ánh đúng những
+gì diễn ra — kể cả các vòng lặp, ngoại lệ. Sơ đồ quy trình thông thường
+là quy trình “lý tưởng trên giấy”, thường bỏ sót chính những chỗ gây
+nghẽn.</p>
+<p><strong>H2: Vì sao khẳng định điểm nghẽn nằm ở các bước thủ
+công?</strong> Nhóm đo thời gian chờ trung bình sau mỗi bước. Ba bước
+chờ lâu nhất đều do Marketing/CSKH làm tay: <em>Yêu cầu bổ sung</em>
+15,86 giờ, <em>Kiểm tra điều kiện</em> 5,77 giờ, <em>Phê duyệt</em> 1,92
+giờ. Đây là bằng chứng định lượng, không phải cảm tính.</p>
+<p><strong>H3: Dữ liệu TO-BE là thật hay mô phỏng?</strong> Đây là dữ
+liệu kịch bản dùng để minh họa tác động khi áp dụng AI, được giữ cùng số
+hồ sơ (1.200) và cùng tỉ lệ kết quả (942 thành công / 258 từ chối) như
+AS-IS để so sánh công bằng. Mục tiêu là thể hiện phương pháp và độ lớn
+cải thiện khi tự động hóa đúng điểm nghẽn.</p>
+<p><strong>H4: Giảm 97% thời gian có bị thổi phồng không?</strong> Con
+số đến từ việc so sánh cycle time trung bình: 28,35 giờ (cũ) so với 0,92
+giờ (mới). Phần lớn thời gian cũ là <strong>thời gian chờ</strong> giữa
+các bước thủ công (ví dụ chờ 16 giờ sau yêu cầu bổ sung), chứ không phải
+thời gian xử lý thực. Khi tự động hóa, các khoảng chờ này gần như biến
+mất — nên mức giảm lớn là hợp lý.</p>
+<p><strong>H5: AI có thay thế hoàn toàn con người không?</strong> Không.
+Mô hình là <strong>human-in-the-loop</strong>: AI xử lý 84,4% hồ sơ
+thông thường, còn 15,6% hồ sơ nghi ngờ/ngoại lệ vẫn chuyển cho Marketing
+xét duyệt. Con người tập trung vào việc khó và giá trị cao.</p>
+<p><strong>H6: Rủi ro khi để AI tự duyệt là gì, kiểm soát ra
+sao?</strong> Rủi ro là AI duyệt sai (bỏ sót gian lận hoặc từ chối nhầm
+khách thật). Kiểm soát bằng: (1) bước <em>AI đánh giá bất thường</em> để
+đẩy hồ sơ nghi ngờ sang người; (2) giữ con người duyệt ngoại lệ; (3)
+giám sát liên tục bằng Process Mining (conformance checking) để phát
+hiện quy trình đi lệch.</p>
+<p><strong>H7: Chi phí triển khai AI có xứng đáng không?</strong> Lợi
+ích đo được: giảm 95% tải thao tác của Marketing (4.003 → 187 lượt) và
+rút ngắn thời gian phục vụ khách ~31 lần. Lộ trình chia 3 giai đoạn giúp
+triển khai dần, giảm rủi ro và chi phí ban đầu.</p>
+<p><strong>H8: Vì sao bước Kiểm tra thông tin xuất hiện 1.861
+lần?</strong> Vì nhiều hồ sơ thiếu thông tin, phải yêu cầu khách bổ sung
+rồi <strong>kiểm tra lại</strong> — mỗi lần lặp là một lần đếm thêm.
+32,8% hồ sơ rơi vào vòng lặp này. AI đọc và đối chiếu chính xác hơn ngay
+từ đầu nên giảm được số lần kiểm tra (xuống 1.651).</p>
+<p><strong>H9: Phương pháp này áp dụng được cho quy trình khác
+không?</strong> Có. Process Mining áp dụng cho bất kỳ quy trình nào có
+ghi nhật ký: xử lý đơn hàng, duyệt hồ sơ vay, chăm sóc khách hàng,
+logistics… Cách làm giống nhau: dựng quy trình thật → tìm điểm nghẽn →
+đặt AI/tự động hóa đúng chỗ → đo lại.</p>
+<p><strong>H10: Công cụ PM4Py có miễn phí không, cần hạ tầng
+gì?</strong> PM4Py là thư viện Python <strong>mã nguồn mở, miễn
+phí</strong>. Chỉ cần Python và máy tính thông thường; không cần hạ tầng
+đặc biệt cho phân tích ở quy mô này.</p>
+<h1 id="section">════════════════════</h1>
+<h1 id="số-liệu-mô-tả-biểu-đồ-bằng-lời">Số liệu &amp; Mô tả biểu đồ bằng
+lời</h1>
+<h3 id="đề-tài-ứng-dụng-ai-vào-quản-trị-vận-hành-process-mining">Đề tài:
+Ứng dụng AI vào Quản trị Vận hành — Process Mining</h3>
+<blockquote>
+<p>Tài liệu cung cấp số liệu dạng bảng và <strong>mô tả từng biểu đồ
+bằng lời</strong>, giúp NotebookLM hiểu nội dung các hình ảnh mà không
+cần nhìn trực tiếp. Dùng kèm các file hình trong thư mục
+<code>reports/figures/</code>.</p>
+</blockquote>
+<hr />
+<h2 id="a.-bảng-số-liệu-tổng-hợp">A. Bảng số liệu tổng hợp</h2>
+<h3 id="a1.-quy-mô-dữ-liệu">A1. Quy mô dữ liệu</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AS-IS (cũ)</th>
+<th>TO-BE (mới)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số hồ sơ</td>
+<td>1.200</td>
+<td>1.200</td>
+</tr>
+<tr>
+<td>Số sự kiện</td>
+<td>12.267</td>
+<td>12.847</td>
+</tr>
+<tr>
+<td>Hồ sơ thành công</td>
+<td>942</td>
+<td>942</td>
+</tr>
+<tr>
+<td>Hồ sơ từ chối</td>
+<td>258</td>
+<td>258</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a2.-thời-gian-xử-lý-một-hồ-sơ-cycle-time-đơn-vị-giờ">A2. Thời
+gian xử lý một hồ sơ (cycle time, đơn vị: giờ)</h3>
+<table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>AS-IS</th>
+<th>TO-BE</th>
+<th>Mức giảm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trung bình</td>
+<td>28,35</td>
+<td>0,92</td>
+<td>~97%</td>
+</tr>
+<tr>
+<td>Trung vị</td>
+<td>12,61</td>
+<td>0,50</td>
+<td>~96%</td>
+</tr>
+<tr>
+<td>P90</td>
+<td>60,44</td>
+<td>2,02</td>
+<td>~97%</td>
+</tr>
+<tr>
+<td>Lớn nhất</td>
+<td>297,73</td>
+<td>6,02</td>
+<td>~98%</td>
+</tr>
+</tbody>
+</table>
+<p>Nhanh hơn trung bình khoảng <strong>31 lần</strong>.</p>
+<h3 id="a3.-điểm-nghẽn-thời-gian-chờ-trung-bình-sau-mỗi-bước-giờ">A3.
+Điểm nghẽn — thời gian chờ trung bình sau mỗi bước (giờ)</h3>
+<table>
+<thead>
+<tr>
+<th>Bước (AS-IS)</th>
+<th>Thời gian chờ</th>
+<th></th>
+<th>Bước (TO-BE)</th>
+<th>Thời gian chờ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yêu cầu bổ sung</td>
+<td>15,86</td>
+<td></td>
+<td>Yêu cầu bổ sung tự động</td>
+<td>0,92</td>
+</tr>
+<tr>
+<td>Kiểm tra điều kiện</td>
+<td>5,77</td>
+<td></td>
+<td>AI đánh giá bất thường</td>
+<td>0,19</td>
+</tr>
+<tr>
+<td>Ghi nhận đăng ký</td>
+<td>4,81</td>
+<td></td>
+<td>Tự động gửi mã</td>
+<td>0,10</td>
+</tr>
+<tr>
+<td>Bổ sung thông tin</td>
+<td>4,31</td>
+<td></td>
+<td>Bắt đầu</td>
+<td>0,08</td>
+</tr>
+<tr>
+<td>Kiểm tra thông tin</td>
+<td>3,00</td>
+<td></td>
+<td>Tự động kiểm tra điều kiện</td>
+<td>0,05</td>
+</tr>
+<tr>
+<td>Phê duyệt</td>
+<td>1,92</td>
+<td></td>
+<td>Ghi nhận đăng ký</td>
+<td>0,05</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a4.-phân-bổ-công-việc-theo-nguồn-lực-số-sự-kiện">A4. Phân bổ
+công việc theo nguồn lực (số sự kiện)</h3>
+<table>
+<thead>
+<tr>
+<th>Nguồn lực</th>
+<th>AS-IS</th>
+<th>TO-BE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hệ thống</td>
+<td>4.542</td>
+<td>7.393</td>
+</tr>
+<tr>
+<td>Marketing</td>
+<td>4.003</td>
+<td><strong>187</strong></td>
+</tr>
+<tr>
+<td>Khách hàng</td>
+<td>2.803</td>
+<td>2.593</td>
+</tr>
+<tr>
+<td>CSKH</td>
+<td>919</td>
+<td>0</td>
+</tr>
+<tr>
+<td>AI / Hệ thống</td>
+<td>0</td>
+<td>2.674</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a5.-mức-độ-tự-động-hóa-to-be">A5. Mức độ tự động hóa
+(TO-BE)</h3>
+<ul>
+<li>Hồ sơ AI xử lý tự động hoàn toàn: <strong>1.013
+(84,4%)</strong></li>
+<li>Hồ sơ cần người xét duyệt (ngoại lệ): <strong>187
+(15,6%)</strong></li>
+</ul>
+<h3 id="a6.-làm-lại-rework">A6. Làm lại (rework)</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AS-IS</th>
+<th>TO-BE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tỷ lệ hồ sơ phải kiểm tra lại</td>
+<td>32,8%</td>
+<td>32,8%</td>
+</tr>
+<tr>
+<td>Tổng số lần kiểm tra thông tin</td>
+<td>1.861</td>
+<td>1.651</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a7.-phân-bố-theo-kênh-và-chương-trình-as-is">A7. Phân bố theo
+kênh và chương trình (AS-IS)</h3>
+<ul>
+<li>Kênh: Website 5.399 · Ứng dụng 3.471 · Landing page 2.346 · QR tại
+cửa hàng 1.051</li>
+<li>Chương trình: MEMBER15 3.148 · FREESHIP 3.054 · WELCOME10 3.034 ·
+SUMMER20 3.031</li>
+</ul>
+<hr />
+<h2 id="b.-mô-tả-các-biểu-đồ-bằng-lời">B. Mô tả các biểu đồ (bằng
+lời)</h2>
+<p><strong>Hình 1 — Tần suất hoạt động (2 biểu đồ cột ngang, AS-IS và
+TO-BE).</strong> Biểu đồ cột ngang so sánh số lần xuất hiện của mỗi
+bước. Ở AS-IS, cột <em>Kiểm tra thông tin</em> dài nhất (1.861), vượt
+qua đường kẻ đứt đánh dấu mốc 1.200 hồ sơ — cho thấy làm lại. Ở TO-BE,
+các cột cân đối hơn và xuất hiện các bước mới có chữ “AI” và “Tự
+động”.</p>
+<p><strong>Hình 2 &amp; 3 — Bản đồ quy trình (Directly-Follows Graph)
+cho AS-IS và TO-BE.</strong> Dạng sơ đồ hộp-mũi tên: mỗi hộp là một
+bước, mũi tên là luồng chuyển từ bước này sang bước kia, con số trên mũi
+tên là số hồ sơ đi qua. AS-IS có nhiều nhánh phụ và vòng lặp quay lại
+bước kiểm tra. TO-BE gọn hơn, luồng chính chạy thẳng qua các bước tự
+động, chỉ tách nhánh nhỏ cho ngoại lệ.</p>
+<p><strong>Hình 4 — Phân phối thời gian xử lý (histogram
+chồng).</strong> Trục ngang là số giờ, trục dọc là số hồ sơ. Phân phối
+AS-IS (màu đỏ cam) trải rộng về phía phải, nhiều hồ sơ mất hàng chục
+giờ. Phân phối TO-BE (màu xanh) dồn sát về 0 — gần như mọi hồ sơ xong
+trong vòng 1-2 giờ.</p>
+<p><strong>Hình 5 — Điểm nghẽn AS-IS (cột ngang, kèm nhãn giờ).</strong>
+Xếp hạng các bước theo thời gian chờ sau đó. Cột dài nhất là <em>Yêu cầu
+bổ sung</em> với 15,9 giờ, rồi giảm dần. Trực quan cho thấy nghẽn tập
+trung ở các bước làm tay.</p>
+<p><strong>Hình 6 — Phân bổ công việc theo nguồn lực (2 biểu đồ
+tròn).</strong> Hai hình tròn so sánh tỉ lệ công việc. AS-IS: Marketing
+chiếm miếng lớn (~1/3). TO-BE: miếng Marketing teo lại còn rất nhỏ, phần
+lớn chuyển sang Hệ thống và AI.</p>
+<p><strong>Hình 7 — So sánh cycle time (cột đôi).</strong> Hai cặp cột
+so sánh thời gian trung bình và P90. Cột AS-IS (đỏ cam) cao vượt trội;
+cột TO-BE (xanh) thấp sát đáy. Nhãn trên cột: 28,3h vs 0,9h (trung
+bình), 60,4h vs 2,0h (P90).</p>
+</body>
+</html>

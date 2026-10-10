@@ -7441,14 +7441,15 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="%E1%BB%A8ng-d%E1%BB%A5ng-AI-v%C3%A0o-Qu%E1%BA%A3n-tr%E1%BB%8B-V%E1%BA%ADn-h%C3%A0nh">Ứng dụng AI vào Quản trị Vận hành<a class="anchor-link" href="#%E1%BB%A8ng-d%E1%BB%A5ng-AI-v%C3%A0o-Qu%E1%BA%A3n-tr%E1%BB%8B-V%E1%BA%ADn-h%C3%A0nh">¶</a></h1><h2 id="Ph%C3%A2n-t%C3%ADch-quy-tr%C3%ACnh-b%E1%BA%B1ng-Process-Mining-%E2%80%94-Case-study:-Quy-tr%C3%ACnh-c%E1%BA%A5p-m%C3%A3-khuy%E1%BA%BFn-m%C3%A3i">Phân tích quy trình bằng Process Mining — Case study: Quy trình cấp mã khuyến mãi<a class="anchor-link" href="#Ph%C3%A2n-t%C3%ADch-quy-tr%C3%ACnh-b%E1%BA%B1ng-Process-Mining-%E2%80%94-Case-study:-Quy-tr%C3%ACnh-c%E1%BA%A5p-m%C3%A3-khuy%E1%BA%BFn-m%C3%A3i">¶</a></h2><p><strong>Thời lượng trình bày:</strong> ~20 phút  |  <strong>Công cụ:</strong> Python · pandas · PM4Py · matplotlib/seaborn</p>
+<h1 id="%E1%BB%A8ng-d%E1%BB%A5ng-AI-v%C3%A0o-Qu%E1%BA%A3n-tr%E1%BB%8B-V%E1%BA%ADn-h%C3%A0nh">Ứng dụng AI vào Quản trị Vận hành<a class="anchor-link" href="#%E1%BB%A8ng-d%E1%BB%A5ng-AI-v%C3%A0o-Qu%E1%BA%A3n-tr%E1%BB%8B-V%E1%BA%ADn-h%C3%A0nh">¶</a></h1><h2 id="Ph%C3%A2n-t%C3%ADch-quy-tr%C3%ACnh-b%E1%BA%B1ng-Process-Mining-%E2%80%94-V%C3%AD-d%E1%BB%A5:-Quy-tr%C3%ACnh-c%E1%BA%A5p-m%C3%A3-khuy%E1%BA%BFn-m%C3%A3i">Phân tích quy trình bằng Process Mining — Ví dụ: Quy trình cấp mã khuyến mãi<a class="anchor-link" href="#Ph%C3%A2n-t%C3%ADch-quy-tr%C3%ACnh-b%E1%BA%B1ng-Process-Mining-%E2%80%94-V%C3%AD-d%E1%BB%A5:-Quy-tr%C3%ACnh-c%E1%BA%A5p-m%C3%A3-khuy%E1%BA%BFn-m%C3%A3i">¶</a></h2><p><em>Kính chào thầy/cô và các bạn. Sau đây nhóm em xin trình bày đề tài <strong>ứng dụng AI vào quản trị vận hành</strong>.</em></p>
+<p><strong>Thời lượng:</strong> ~20 phút  |  <strong>Công cụ nhóm em dùng:</strong> Python · pandas · PM4Py · matplotlib/seaborn</p>
 <hr/>
-<h3 id="D%C3%A0n-%C3%BD-b%C3%A1o-c%C3%A1o-(7-ph%E1%BA%A7n)">Dàn ý báo cáo (7 phần)<a class="anchor-link" href="#D%C3%A0n-%C3%BD-b%C3%A1o-c%C3%A1o-(7-ph%E1%BA%A7n)">¶</a></h3><table>
+<h3 id="N%E1%BB%99i-dung-t%E1%BB%A5i-em-s%E1%BA%BD-tr%C3%ACnh-b%C3%A0y-(7-ph%E1%BA%A7n)">Nội dung tụi em sẽ trình bày (7 phần)<a class="anchor-link" href="#N%E1%BB%99i-dung-t%E1%BB%A5i-em-s%E1%BA%BD-tr%C3%ACnh-b%C3%A0y-(7-ph%E1%BA%A7n)">¶</a></h3><table>
 <thead>
 <tr>
 <th>#</th>
 <th>Phần</th>
-<th>Nội dung</th>
+<th>Nội dung chính</th>
 <th>Thời lượng</th>
 </tr>
 </thead>
@@ -7456,47 +7457,50 @@ main {
 <tr>
 <td>1</td>
 <td><strong>Bối cảnh &amp; Mục tiêu</strong></td>
-<td>Vấn đề vận hành, câu hỏi nghiên cứu</td>
+<td>Vấn đề đang gặp, câu hỏi nhóm em muốn trả lời</td>
 <td>2'</td>
 </tr>
 <tr>
 <td>2</td>
-<td><strong>Dữ liệu &amp; Phương pháp</strong></td>
-<td>Event log, công cụ Process Mining</td>
+<td><strong>Dữ liệu &amp; Cách làm</strong></td>
+<td>Dữ liệu nhật ký, công cụ Process Mining</td>
 <td>2'</td>
 </tr>
 <tr>
 <td>3</td>
-<td><strong>Khám phá quy trình AS-IS</strong></td>
-<td>Process map, phát hiện điểm nghẽn</td>
+<td><strong>Quy trình hiện tại (AS-IS)</strong></td>
+<td>Bản đồ quy trình, tìm điểm nghẽn</td>
 <td>4'</td>
 </tr>
 <tr>
 <td>4</td>
-<td><strong>Đo lường hiệu năng</strong></td>
-<td>Cycle time, waiting time, rework</td>
+<td><strong>Đo hiệu quả</strong></td>
+<td>Thời gian xử lý, thời gian chờ, làm lại</td>
 <td>4'</td>
 </tr>
 <tr>
 <td>5</td>
-<td><strong>Thiết kế TO-BE với AI</strong></td>
-<td>AI thay thế / hỗ trợ ở đâu</td>
+<td><strong>Quy trình mới có AI (TO-BE)</strong></td>
+<td>Đặt AI vào đâu</td>
 <td>3'</td>
 </tr>
 <tr>
 <td>6</td>
-<td><strong>So sánh AS-IS ↔ TO-BE</strong></td>
-<td>Biểu đồ, % cải thiện, ROI</td>
+<td><strong>So sánh trước ↔ sau</strong></td>
+<td>Biểu đồ, mức cải thiện</td>
 <td>3'</td>
 </tr>
 <tr>
 <td>7</td>
-<td><strong>Kết luận &amp; Khuyến nghị</strong></td>
-<td>Bài học, lộ trình triển khai</td>
+<td><strong>Kết luận &amp; Đề xuất</strong></td>
+<td>Bài học, lộ trình áp dụng</td>
 <td>2'</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>Phần trình bày của nhóm em tập trung vào <strong>hình ảnh, dữ liệu và kết quả thực tế</strong>; các đoạn mã chỉ để minh chứng rằng mọi con số đều chạy ra từ dữ liệu thật.</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -7507,15 +7511,15 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1.-B%E1%BB%91i-c%E1%BA%A3nh-&amp;-M%E1%BB%A5c-ti%C3%AAu">1. Bối cảnh &amp; Mục tiêu<a class="anchor-link" href="#1.-B%E1%BB%91i-c%E1%BA%A3nh-&amp;-M%E1%BB%A5c-ti%C3%AAu">¶</a></h2><p><strong>Bối cảnh.</strong> Doanh nghiệp vận hành chương trình khuyến mãi (cấp mã giảm giá) qua nhiều kênh: Website, Ứng dụng, Landing page, QR tại cửa hàng. Mỗi yêu cầu của khách hàng đi qua một chuỗi bước: <em>đăng ký → kiểm tra thông tin → kiểm tra điều kiện → phê duyệt → cấp &amp; gửi mã</em>. Hiện quy trình phụ thuộc nhiều vào thao tác thủ công của bộ phận Marketing/CSKH.</p>
-<p><strong>Vấn đề.</strong> Thời gian xử lý kéo dài, không ổn định; khách hàng chờ lâu; tồn tại các vòng lặp <em>yêu cầu bổ sung → bổ sung → kiểm tra lại</em> (rework).</p>
-<p><strong>Câu hỏi nghiên cứu.</strong></p>
+<h2 id="1.-B%E1%BB%91i-c%E1%BA%A3nh-&amp;-M%E1%BB%A5c-ti%C3%AAu">1. Bối cảnh &amp; Mục tiêu<a class="anchor-link" href="#1.-B%E1%BB%91i-c%E1%BA%A3nh-&amp;-M%E1%BB%A5c-ti%C3%AAu">¶</a></h2><p><strong>Bối cảnh.</strong> Doanh nghiệp chạy chương trình khuyến mãi (cấp mã giảm giá) qua nhiều kênh: Website, Ứng dụng, Landing page, QR tại cửa hàng. Mỗi yêu cầu của khách đi qua một chuỗi bước: <em>đăng ký → kiểm tra thông tin → kiểm tra điều kiện → phê duyệt → cấp &amp; gửi mã</em>. Hiện nay quy trình này phụ thuộc rất nhiều vào thao tác tay của bộ phận Marketing/CSKH.</p>
+<p><strong>Vấn đề nhóm em nhận thấy.</strong> Thời gian xử lý kéo dài và thất thường; khách hàng phải chờ lâu; lại hay xuất hiện vòng lặp <em>yêu cầu bổ sung → khách bổ sung → kiểm tra lại</em> (gọi là <em>làm lại / rework</em>).</p>
+<p><strong>Ba câu hỏi tụi em muốn trả lời:</strong></p>
 <ol>
-<li>Quy trình thực tế (AS-IS) đang diễn ra như thế nào? Điểm nghẽn nằm ở đâu?</li>
-<li>Áp dụng AI vào các bước nào thì tạo ra giá trị lớn nhất?</li>
-<li>Quy trình mới (TO-BE) cải thiện được bao nhiêu về thời gian, nguồn lực?</li>
+<li>Quy trình thực tế đang chạy ra sao? Điểm nghẽn nằm ở đâu?</li>
+<li>Nên đưa AI vào bước nào thì mang lại giá trị lớn nhất?</li>
+<li>Quy trình mới cải thiện được bao nhiêu về thời gian và nhân lực?</li>
 </ol>
-<p><strong>Phương pháp:</strong> <em>Process Mining</em> — tái dựng quy trình thực tế từ nhật ký sự kiện (event log) thay vì dựa trên quy trình "trên giấy".</p>
+<p><strong>Cách tiếp cận của nhóm em:</strong> dùng <em>Process Mining</em> — tức là dựng lại quy trình <strong>thực tế</strong> từ dữ liệu nhật ký mà hệ thống ghi lại, thay vì nhìn vào quy trình "trên giấy".</p>
 </div>
 </div>
 </div>
@@ -7526,59 +7530,52 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-D%E1%BB%AF-li%E1%BB%87u-&amp;-Ph%C6%B0%C6%A1ng-ph%C3%A1p">2. Dữ liệu &amp; Phương pháp<a class="anchor-link" href="#2.-D%E1%BB%AF-li%E1%BB%87u-&amp;-Ph%C6%B0%C6%A1ng-ph%C3%A1p">¶</a></h2><h3 id="2.1.-Event-log">2.1. Event log<a class="anchor-link" href="#2.1.-Event-log">¶</a></h3><p>Hai nhật ký sự kiện, mỗi dòng là một <strong>sự kiện</strong> (một bước đã diễn ra của một hồ sơ):</p>
+<h2 id="2.-D%E1%BB%AF-li%E1%BB%87u-&amp;-C%C3%A1ch-l%C3%A0m">2. Dữ liệu &amp; Cách làm<a class="anchor-link" href="#2.-D%E1%BB%AF-li%E1%BB%87u-&amp;-C%C3%A1ch-l%C3%A0m">¶</a></h2><h3 id="2.1.-D%E1%BB%AF-li%E1%BB%87u-nh%C3%B3m-em-d%C3%B9ng">2.1. Dữ liệu nhóm em dùng<a class="anchor-link" href="#2.1.-D%E1%BB%AF-li%E1%BB%87u-nh%C3%B3m-em-d%C3%B9ng">¶</a></h3><p>Nhóm em có hai bộ nhật ký sự kiện. Mỗi dòng là <strong>một bước đã diễn ra</strong> của một hồ sơ khách hàng:</p>
 <table>
 <thead>
 <tr>
-<th>Cột</th>
-<th>Vai trò trong Process Mining</th>
-<th>Ý nghĩa</th>
+<th>Cột dữ liệu</th>
+<th>Ý nghĩa dễ hiểu</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>Case ID</code></td>
-<td><strong>Case</strong></td>
-<td>Mã hồ sơ khuyến mãi (một hành trình)</td>
+<td>Mã một hồ sơ khuyến mãi (một hành trình của khách)</td>
 </tr>
 <tr>
 <td><code>Activity</code></td>
-<td><strong>Activity</strong></td>
-<td>Tên bước nghiệp vụ</td>
+<td>Tên bước đang làm</td>
 </tr>
 <tr>
 <td><code>Timestamp</code></td>
-<td><strong>Timestamp</strong></td>
-<td>Thời điểm xảy ra</td>
+<td>Thời điểm bước đó xảy ra</td>
 </tr>
 <tr>
 <td><code>Resource</code></td>
-<td>Resource</td>
-<td>Ai/cái gì thực hiện (Hệ thống, Marketing, AI...)</td>
+<td>Ai làm bước đó (Hệ thống, Marketing, hay AI)</td>
 </tr>
 <tr>
 <td><code>Channel</code>, <code>Campaign</code></td>
-<td>Thuộc tính</td>
-<td>Kênh &amp; chiến dịch</td>
+<td>Kênh &amp; chương trình khuyến mãi</td>
 </tr>
 <tr>
 <td><code>Outcome</code></td>
-<td>Kết quả</td>
-<td>Thành công / Từ chối</td>
+<td>Kết quả cuối: Thành công hay Từ chối</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>AS-IS</strong> (<code>as-is.csv</code>): quy trình hiện tại — thủ công.</li>
-<li><strong>TO-BE</strong> (<code>to-be.csv</code>): quy trình tái thiết kế — tích hợp AI.</li>
+<li><strong>AS-IS</strong> — quy trình <strong>hiện tại</strong>, làm thủ công.</li>
+<li><strong>TO-BE</strong> — quy trình <strong>mới</strong> nhóm em thiết kế, có AI hỗ trợ.</li>
 </ul>
 <h3 id="2.2.-C%C3%B4ng-c%E1%BB%A5-Process-Mining">2.2. Công cụ Process Mining<a class="anchor-link" href="#2.2.-C%C3%B4ng-c%E1%BB%A5-Process-Mining">¶</a></h3><ul>
-<li><strong>PM4Py</strong> — thư viện process mining mã nguồn mở (Python): khám phá mô hình quy trình (Directly-Follows Graph, Heuristics/Inductive Miner), phân tích hiệu năng, phát hiện biến thể (variants).</li>
-<li><strong>pandas</strong> — xử lý &amp; tính toán KPI.</li>
-<li><strong>matplotlib / seaborn</strong> — trực quan hóa.</li>
+<li><strong>PM4Py</strong> — thư viện miễn phí giúp vẽ lại quy trình thật từ dữ liệu và đo chỗ nào bị chậm.</li>
+<li><strong>pandas</strong> — tính toán các con số.</li>
+<li><strong>matplotlib / seaborn</strong> — vẽ biểu đồ.</li>
 </ul>
 <blockquote>
-<p>Lý do chọn Process Mining: nó dùng <em>dấu vết số</em> có sẵn để chỉ ra <strong>đúng</strong> nơi quy trình bị chậm — nền tảng khách quan để quyết định "AI nên đặt ở đâu".</p>
+<p>Vì sao nhóm em chọn Process Mining? Vì nó dựa trên <strong>dấu vết số có sẵn</strong> để chỉ ra <em>chính xác</em> chỗ quy trình bị chậm — một bằng chứng khách quan để quyết định "nên đặt AI ở đâu", thay vì phỏng đoán.</p>
 </blockquote>
 </div>
 </div>
@@ -7762,7 +7759,7 @@ TO-BE : 12847 sự kiện | 1200 hồ sơ
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Kh%C3%A1m-ph%C3%A1-quy-tr%C3%ACnh-AS-IS-%E2%80%94-ph%C3%A1t-hi%E1%BB%87n-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">3. Khám phá quy trình AS-IS — phát hiện điểm nghẽn<a class="anchor-link" href="#3.-Kh%C3%A1m-ph%C3%A1-quy-tr%C3%ACnh-AS-IS-%E2%80%94-ph%C3%A1t-hi%E1%BB%87n-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">¶</a></h2><h3 id="3.1.-T%E1%BA%A7n-su%E1%BA%A5t-ho%E1%BA%A1t-%C4%91%E1%BB%99ng">3.1. Tần suất hoạt động<a class="anchor-link" href="#3.1.-T%E1%BA%A7n-su%E1%BA%A5t-ho%E1%BA%A1t-%C4%91%E1%BB%99ng">¶</a></h3><p>Hoạt động nào xuất hiện nhiều hơn số hồ sơ ⇒ dấu hiệu <strong>lặp lại / rework</strong>.</p>
+<h2 id="3.-Quy-tr%C3%ACnh-hi%E1%BB%87n-t%E1%BA%A1i-(AS-IS)-%E2%80%94-%C4%91i-t%C3%ACm-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">3. Quy trình hiện tại (AS-IS) — đi tìm điểm nghẽn<a class="anchor-link" href="#3.-Quy-tr%C3%ACnh-hi%E1%BB%87n-t%E1%BA%A1i-(AS-IS)-%E2%80%94-%C4%91i-t%C3%ACm-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">¶</a></h2><h3 id="3.1.-M%E1%BB%97i-b%C6%B0%E1%BB%9Bc-xu%E1%BA%A5t-hi%E1%BB%87n-bao-nhi%C3%AAu-l%E1%BA%A7n?">3.1. Mỗi bước xuất hiện bao nhiêu lần?<a class="anchor-link" href="#3.1.-M%E1%BB%97i-b%C6%B0%E1%BB%9Bc-xu%E1%BA%A5t-hi%E1%BB%87n-bao-nhi%C3%AAu-l%E1%BA%A7n?">¶</a></h3><p>Mẹo đọc: bước nào xuất hiện <strong>nhiều hơn số hồ sơ</strong> nghĩa là bước đó bị <strong>làm đi làm lại</strong> — dấu hiệu lãng phí.</p>
 </div>
 </div>
 </div>
@@ -7811,7 +7808,7 @@ TO-BE : 12847 sự kiện | 1200 hồ sơ
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Đọc biểu đồ:</strong> Ở AS-IS, <em>Kiểm tra thông tin</em> (≈1861 lần) vượt xa số hồ sơ (1200) → <strong>rework rõ rệt</strong>. Ở TO-BE, <em>AI kiểm tra thông tin</em> giảm còn ≈1651, và xuất hiện bước mới <em>AI đánh giá bất thường</em>, <em>Marketing xét duyệt ngoại lệ</em> (chỉ với case khó).</p>
+<p><strong>Nhóm em đọc biểu đồ này như sau:</strong> Ở quy trình cũ (AS-IS), bước <em>Kiểm tra thông tin</em> chạy tới ≈1.861 lần trong khi chỉ có 1.200 hồ sơ → rõ ràng bị <strong>làm lại nhiều</strong>. Ở quy trình mới (TO-BE), <em>AI kiểm tra thông tin</em> giảm còn ≈1.651, và xuất hiện thêm bước <em>AI đánh giá bất thường</em> cùng <em>Marketing xét duyệt ngoại lệ</em> (chỉ dành cho các hồ sơ khó).</p>
 </div>
 </div>
 </div>
@@ -7822,7 +7819,7 @@ TO-BE : 12847 sự kiện | 1200 hồ sơ
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.2.-Directly-Follows-Graph-(b%E1%BA%A3n-%C4%91%E1%BB%93-quy-tr%C3%ACnh-th%E1%BB%B1c-t%E1%BA%BF)">3.2. Directly-Follows Graph (bản đồ quy trình thực tế)<a class="anchor-link" href="#3.2.-Directly-Follows-Graph-(b%E1%BA%A3n-%C4%91%E1%BB%93-quy-tr%C3%ACnh-th%E1%BB%B1c-t%E1%BA%BF)">¶</a></h3><p>Dùng PM4Py dựng DFG — xương sống của process discovery.</p>
+<h3 id="3.2.-B%E1%BA%A3n-%C4%91%E1%BB%93-quy-tr%C3%ACnh-th%E1%BB%B1c-t%E1%BA%BF">3.2. Bản đồ quy trình thực tế<a class="anchor-link" href="#3.2.-B%E1%BA%A3n-%C4%91%E1%BB%93-quy-tr%C3%ACnh-th%E1%BB%B1c-t%E1%BA%BF">¶</a></h3><p>Dưới đây là <strong>bản đồ quy trình</strong> do công cụ tự dựng từ dữ liệu — cho thấy các bước nối tiếp nhau thế nào và luồng nào phổ biến nhất (đường càng đậm, càng nhiều hồ sơ đi qua).</p>
 </div>
 </div>
 </div>
@@ -7955,7 +7952,7 @@ Top luồng (A -&gt; B : số lần) — AS-IS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.3.-Bi%E1%BA%BFn-th%E1%BB%83-quy-tr%C3%ACnh-(variants)">3.3. Biến thể quy trình (variants)<a class="anchor-link" href="#3.3.-Bi%E1%BA%BFn-th%E1%BB%83-quy-tr%C3%ACnh-(variants)">¶</a></h3><p>Mỗi <em>variant</em> = một trình tự hoạt động khác nhau. Ít variant chính + nhiều variant hiếm = quy trình chuẩn hóa chưa tốt.</p>
+<h3 id="3.3.-C%C3%B3-bao-nhi%C3%AAu-ki%E1%BB%83u-%C4%91i-kh%C3%A1c-nhau?">3.3. Có bao nhiêu kiểu đi khác nhau?<a class="anchor-link" href="#3.3.-C%C3%B3-bao-nhi%C3%AAu-ki%E1%BB%83u-%C4%91i-kh%C3%A1c-nhau?">¶</a></h3><p>Mỗi <em>kiểu đi</em> (variant) là một trình tự các bước. Nếu có vài kiểu chính nhưng lại kèm rất nhiều kiểu lạ hiếm gặp, nghĩa là quy trình <strong>chưa được chuẩn hóa tốt</strong>.</p>
 </div>
 </div>
 </div>
@@ -8009,7 +8006,7 @@ Top luồng (A -&gt; B : số lần) — AS-IS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-%C4%90o-l%C6%B0%E1%BB%9Dng-hi%E1%BB%87u-n%C4%83ng-%E2%80%94-n%C6%A1i-th%E1%BB%9Di-gian-b%E1%BB%8B-%22%C4%83n-m%C3%B2n%22">4. Đo lường hiệu năng — nơi thời gian bị "ăn mòn"<a class="anchor-link" href="#4.-%C4%90o-l%C6%B0%E1%BB%9Dng-hi%E1%BB%87u-n%C4%83ng-%E2%80%94-n%C6%A1i-th%E1%BB%9Di-gian-b%E1%BB%8B-%22%C4%83n-m%C3%B2n%22">¶</a></h2><h3 id="4.1.-Cycle-time-(t%E1%BB%95ng-th%E1%BB%9Di-gian-x%E1%BB%AD-l%C3%BD-m%E1%BB%99t-h%E1%BB%93-s%C6%A1)">4.1. Cycle time (tổng thời gian xử lý một hồ sơ)<a class="anchor-link" href="#4.1.-Cycle-time-(t%E1%BB%95ng-th%E1%BB%9Di-gian-x%E1%BB%AD-l%C3%BD-m%E1%BB%99t-h%E1%BB%93-s%C6%A1)">¶</a></h3>
+<h2 id="4.-%C4%90o-hi%E1%BB%87u-qu%E1%BA%A3-%E2%80%94-th%E1%BB%9Di-gian-%C4%91ang-b%E1%BB%8B-%22%C4%83n%22-%E1%BB%9F-%C4%91%C3%A2u?">4. Đo hiệu quả — thời gian đang bị "ăn" ở đâu?<a class="anchor-link" href="#4.-%C4%90o-hi%E1%BB%87u-qu%E1%BA%A3-%E2%80%94-th%E1%BB%9Di-gian-%C4%91ang-b%E1%BB%8B-%22%C4%83n%22-%E1%BB%9F-%C4%91%C3%A2u?">¶</a></h2><h3 id="4.1.-M%E1%BB%99t-h%E1%BB%93-s%C6%A1-m%E1%BA%A5t-bao-l%C3%A2u-%C4%91%E1%BB%83-x%E1%BB%AD-l%C3%BD-xong?">4.1. Một hồ sơ mất bao lâu để xử lý xong?<a class="anchor-link" href="#4.1.-M%E1%BB%99t-h%E1%BB%93-s%C6%A1-m%E1%BA%A5t-bao-l%C3%A2u-%C4%91%E1%BB%83-x%E1%BB%AD-l%C3%BD-xong?">¶</a></h3><p>Đây là <strong>tổng thời gian</strong> từ lúc khách bắt đầu đến lúc hoàn tất một hồ sơ.</p>
 </div>
 </div>
 </div>
@@ -8142,7 +8139,7 @@ Top luồng (A -&gt; B : số lần) — AS-IS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="4.2.-%C4%90i%E1%BB%83m-ngh%E1%BA%BDn-%E2%80%94-th%E1%BB%9Di-gian-ch%E1%BB%9D-trung-b%C3%ACnh-SAU-m%E1%BB%97i-ho%E1%BA%A1t-%C4%91%E1%BB%99ng">4.2. Điểm nghẽn — thời gian chờ trung bình SAU mỗi hoạt động<a class="anchor-link" href="#4.2.-%C4%90i%E1%BB%83m-ngh%E1%BA%BDn-%E2%80%94-th%E1%BB%9Di-gian-ch%E1%BB%9D-trung-b%C3%ACnh-SAU-m%E1%BB%97i-ho%E1%BA%A1t-%C4%91%E1%BB%99ng">¶</a></h3><p>Đây là trọng tâm của việc "biết điểm nghẽn ở đâu": tính khoảng cách thời gian giữa hai sự kiện liên tiếp trong cùng một hồ sơ.</p>
+<h3 id="4.2.-%C4%90i%E1%BB%83m-ngh%E1%BA%BDn-%E2%80%94-kh%C3%A1ch-ph%E1%BA%A3i-ch%E1%BB%9D-l%C3%A2u-nh%E1%BA%A5t-sau-b%C6%B0%E1%BB%9Bc-n%C3%A0o?">4.2. Điểm nghẽn — khách phải chờ lâu nhất sau bước nào?<a class="anchor-link" href="#4.2.-%C4%90i%E1%BB%83m-ngh%E1%BA%BDn-%E2%80%94-kh%C3%A1ch-ph%E1%BA%A3i-ch%E1%BB%9D-l%C3%A2u-nh%E1%BA%A5t-sau-b%C6%B0%E1%BB%9Bc-n%C3%A0o?">¶</a></h3><p>Đây là phần quan trọng nhất để "biết điểm nghẽn ở đâu": nhóm em đo khoảng thời gian giữa hai bước liên tiếp trong cùng một hồ sơ. Bước nào mà <strong>sau nó khách phải chờ lâu</strong> chính là điểm nghẽn.</p>
 </div>
 </div>
 </div>
@@ -8203,7 +8200,7 @@ Top luồng (A -&gt; B : số lần) — AS-IS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Phát hiện chính:</strong> các điểm nghẽn tập trung ở <strong>bước thủ công của Marketing/CSKH</strong> — <em>Yêu cầu bổ sung</em>, <em>Kiểm tra điều kiện</em>, <em>Phê duyệt</em>. Đây chính là các bước có thể giao cho AI / tự động hóa.</p>
+<p><strong>Phát hiện chính của nhóm em:</strong> các điểm nghẽn đều rơi vào <strong>những bước làm tay của Marketing/CSKH</strong> — <em>Yêu cầu bổ sung</em>, <em>Kiểm tra điều kiện</em>, <em>Phê duyệt</em>. Đây đúng là những bước nên giao cho AI / tự động hóa.</p>
 </div>
 </div>
 </div>
@@ -8214,7 +8211,7 @@ Top luồng (A -&gt; B : số lần) — AS-IS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="4.3.-Rework-&amp;-t%E1%BA%A3i-ngu%E1%BB%93n-l%E1%BB%B1c">4.3. Rework &amp; tải nguồn lực<a class="anchor-link" href="#4.3.-Rework-&amp;-t%E1%BA%A3i-ngu%E1%BB%93n-l%E1%BB%B1c">¶</a></h3>
+<h3 id="4.3.-L%C3%A0m-l%E1%BA%A1i-nhi%E1%BB%81u-kh%C3%B4ng?-Ai-%C4%91ang-g%C3%A1nh-vi%E1%BB%87c?">4.3. Làm lại nhiều không? Ai đang gánh việc?<a class="anchor-link" href="#4.3.-L%C3%A0m-l%E1%BA%A1i-nhi%E1%BB%81u-kh%C3%B4ng?-Ai-%C4%91ang-g%C3%A1nh-vi%E1%BB%87c?">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8277,7 +8274,7 @@ TO-BE: 32.8% hồ sơ phải kiểm tra lại — tổng 1651 lần kiểm tra
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Nhận xét:</strong> Ở AS-IS, Marketing gánh ~1/3 khối lượng (4003 sự kiện). Ở TO-BE, phần việc này dịch sang <strong>AI / Hệ thống</strong>; Marketing chỉ còn ~187 sự kiện (xử lý <em>ngoại lệ</em>) → giải phóng nhân lực cho việc giá trị cao.</p>
+<p><strong>Nhận xét của nhóm em:</strong> Ở quy trình cũ, Marketing gánh khoảng 1/3 khối lượng (≈4.003 lượt thao tác). Ở quy trình mới, phần việc này chuyển sang <strong>AI / Hệ thống</strong>; Marketing chỉ còn ≈187 lượt (chỉ xử lý các trường hợp ngoại lệ) → giải phóng nhân lực để làm việc có giá trị cao hơn.</p>
 </div>
 </div>
 </div>
@@ -8288,44 +8285,44 @@ TO-BE: 32.8% hồ sơ phải kiểm tra lại — tổng 1651 lần kiểm tra
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="5.-Thi%E1%BA%BFt-k%E1%BA%BF-TO-BE-v%E1%BB%9Bi-AI-%E2%80%94-%C4%91%E1%BA%B7t-AI-v%C3%A0o-%C4%91%C3%BAng-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">5. Thiết kế TO-BE với AI — đặt AI vào đúng điểm nghẽn<a class="anchor-link" href="#5.-Thi%E1%BA%BFt-k%E1%BA%BF-TO-BE-v%E1%BB%9Bi-AI-%E2%80%94-%C4%91%E1%BA%B7t-AI-v%C3%A0o-%C4%91%C3%BAng-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">¶</a></h2><p>Dựa trên phân tích Phần 3–4, AI được chèn vào <strong>đúng các bước gây nghẽn</strong>:</p>
+<h2 id="5.-Quy-tr%C3%ACnh-m%E1%BB%9Bi-c%C3%B3-AI-(TO-BE)-%E2%80%94-%C4%91%E1%BA%B7t-AI-v%C3%A0o-%C4%91%C3%BAng-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">5. Quy trình mới có AI (TO-BE) — đặt AI vào đúng điểm nghẽn<a class="anchor-link" href="#5.-Quy-tr%C3%ACnh-m%E1%BB%9Bi-c%C3%B3-AI-(TO-BE)-%E2%80%94-%C4%91%E1%BA%B7t-AI-v%C3%A0o-%C4%91%C3%BAng-%C4%91i%E1%BB%83m-ngh%E1%BA%BDn">¶</a></h2><p>Từ những gì phân tích ở Phần 3–4, nhóm em đưa AI vào <strong>đúng các bước đang gây nghẽn</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>Bước AS-IS (thủ công)</th>
-<th>Điểm nghẽn</th>
-<th>Giải pháp AI trong TO-BE</th>
+<th>Bước cũ (làm tay)</th>
+<th>Đang nghẽn thế nào</th>
+<th>Nhóm em thay bằng</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Kiểm tra thông tin (Marketing)</td>
-<td>rework 32.8%, chờ ~3h</td>
-<td><strong>AI kiểm tra thông tin</strong> — tự động trích xuất &amp; đối chiếu</td>
+<td>làm lại 32,8%, chờ ~3h</td>
+<td><strong>AI kiểm tra thông tin</strong> — tự đọc &amp; đối chiếu</td>
 </tr>
 <tr>
 <td>Kiểm tra điều kiện (Marketing)</td>
-<td>chờ ~5.8h</td>
-<td><strong>Tự động kiểm tra điều kiện</strong> theo luật</td>
+<td>chờ ~5,8h</td>
+<td><strong>Tự động kiểm tra điều kiện</strong> theo quy tắc</td>
 </tr>
 <tr>
 <td>Phê duyệt (Marketing)</td>
-<td>chờ ~1.9h</td>
-<td><strong>AI đánh giá bất thường</strong> + tự động cấp mã; chỉ case nghi ngờ mới chuyển người</td>
+<td>chờ ~1,9h</td>
+<td><strong>AI đánh giá bất thường</strong> + tự động cấp mã; chỉ hồ sơ nghi ngờ mới chuyển người</td>
 </tr>
 <tr>
-<td>Yêu cầu bổ sung (thủ công)</td>
-<td>chờ ~15.9h</td>
-<td><strong>Yêu cầu bổ sung tự động</strong> tức thời</td>
+<td>Yêu cầu bổ sung (làm tay)</td>
+<td>chờ ~15,9h</td>
+<td><strong>Yêu cầu bổ sung tự động</strong> ngay lập tức</td>
 </tr>
 <tr>
 <td>Xử lý ngoại lệ</td>
 <td>—</td>
-<td><strong>Marketing xét duyệt ngoại lệ</strong> (human-in-the-loop)</td>
+<td><strong>Marketing xét duyệt ngoại lệ</strong> (vẫn có con người kiểm soát)</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Nguyên tắc thiết kế:</strong> AI xử lý phần lớn khối lượng tiêu chuẩn; con người tập trung vào ngoại lệ (human-in-the-loop) → vừa nhanh vừa kiểm soát rủi ro.</p>
+<p><strong>Nguyên tắc nhóm em theo:</strong> AI lo phần lớn các hồ sơ thông thường; con người tập trung vào ngoại lệ. Nhờ vậy vừa <strong>nhanh</strong> vừa <strong>kiểm soát được rủi ro</strong>.</p>
 </div>
 </div>
 </div>
@@ -8369,7 +8366,7 @@ TO-BE: 32.8% hồ sơ phải kiểm tra lại — tổng 1651 lần kiểm tra
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-So-s%C3%A1nh-AS-IS-%E2%86%94-TO-BE-%E2%80%94-k%E1%BA%BFt-qu%E1%BA%A3-%C4%91%E1%BB%8Bnh-l%C6%B0%E1%BB%A3ng">6. So sánh AS-IS ↔ TO-BE — kết quả định lượng<a class="anchor-link" href="#6.-So-s%C3%A1nh-AS-IS-%E2%86%94-TO-BE-%E2%80%94-k%E1%BA%BFt-qu%E1%BA%A3-%C4%91%E1%BB%8Bnh-l%C6%B0%E1%BB%A3ng">¶</a></h2>
+<h2 id="6.-So-s%C3%A1nh-tr%C6%B0%E1%BB%9Bc-%E2%86%94-sau-%E2%80%94-k%E1%BA%BFt-qu%E1%BA%A3-b%E1%BA%B1ng-con-s%E1%BB%91">6. So sánh trước ↔ sau — kết quả bằng con số<a class="anchor-link" href="#6.-So-s%C3%A1nh-tr%C6%B0%E1%BB%9Bc-%E2%86%94-sau-%E2%80%94-k%E1%BA%BFt-qu%E1%BA%A3-b%E1%BA%B1ng-con-s%E1%BB%91">¶</a></h2><p>Sau đây là phần nhóm em tâm đắc nhất: những con số cho thấy quy trình mới tốt hơn bao nhiêu.</p>
 </div>
 </div>
 </div>
@@ -8535,24 +8532,25 @@ TO-BE: 32.8% hồ sơ phải kiểm tra lại — tổng 1651 lần kiểm tra
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="7.-K%E1%BA%BFt-lu%E1%BA%ADn-&amp;-Khuy%E1%BA%BFn-ngh%E1%BB%8B">7. Kết luận &amp; Khuyến nghị<a class="anchor-link" href="#7.-K%E1%BA%BFt-lu%E1%BA%ADn-&amp;-Khuy%E1%BA%BFn-ngh%E1%BB%8B">¶</a></h2><h3 id="K%E1%BA%BFt-qu%E1%BA%A3-ch%C3%ADnh-(b%E1%BA%B1ng-s%E1%BB%91)">Kết quả chính (bằng số)<a class="anchor-link" href="#K%E1%BA%BFt-qu%E1%BA%A3-ch%C3%ADnh-(b%E1%BA%B1ng-s%E1%BB%91)">¶</a></h3><ul>
-<li><strong>Cycle time trung bình giảm ~97%</strong> (28.3h → 0.9h) — nhanh hơn khoảng <strong>31 lần</strong>.</li>
-<li><strong>Điểm nghẽn</strong> đã được xác định khách quan bằng Process Mining: tập trung ở các bước thủ công <em>Yêu cầu bổ sung</em>, <em>Kiểm tra điều kiện</em>, <em>Phê duyệt</em> của Marketing.</li>
-<li><strong>AI đặt đúng điểm nghẽn</strong> → tự động hóa phần lớn hồ sơ, con người chỉ xử lý ngoại lệ.</li>
-<li><strong>Giải phóng nhân lực Marketing</strong>: từ ~4003 xuống ~187 sự kiện thao tác.</li>
+<h2 id="7.-K%E1%BA%BFt-lu%E1%BA%ADn-&amp;-%C4%90%E1%BB%81-xu%E1%BA%A5t">7. Kết luận &amp; Đề xuất<a class="anchor-link" href="#7.-K%E1%BA%BFt-lu%E1%BA%ADn-&amp;-%C4%90%E1%BB%81-xu%E1%BA%A5t">¶</a></h2><h3 id="K%E1%BA%BFt-qu%E1%BA%A3-ch%C3%ADnh-(b%E1%BA%B1ng-con-s%E1%BB%91)">Kết quả chính (bằng con số)<a class="anchor-link" href="#K%E1%BA%BFt-qu%E1%BA%A3-ch%C3%ADnh-(b%E1%BA%B1ng-con-s%E1%BB%91)">¶</a></h3><ul>
+<li><strong>Thời gian xử lý trung bình giảm ~97%</strong> (28,3 giờ → 0,9 giờ) — tức <strong>nhanh hơn khoảng 31 lần</strong>.</li>
+<li><strong>Điểm nghẽn</strong> được tìm ra một cách khách quan bằng Process Mining: nằm ở các bước làm tay <em>Yêu cầu bổ sung</em>, <em>Kiểm tra điều kiện</em>, <em>Phê duyệt</em>.</li>
+<li><strong>Đặt AI đúng điểm nghẽn</strong> → tự động hóa phần lớn hồ sơ, con người chỉ lo ngoại lệ.</li>
+<li><strong>Giảm tải cho Marketing</strong>: từ ~4.003 xuống còn ~187 lượt thao tác.</li>
 </ul>
 <h3 id="B%C3%A0i-h%E1%BB%8Dc-v%E1%BB%81-qu%E1%BA%A3n-tr%E1%BB%8B-v%E1%BA%ADn-h%C3%A0nh">Bài học về quản trị vận hành<a class="anchor-link" href="#B%C3%A0i-h%E1%BB%8Dc-v%E1%BB%81-qu%E1%BA%A3n-tr%E1%BB%8B-v%E1%BA%ADn-h%C3%A0nh">¶</a></h3><ol>
-<li><strong>Đo trước, cải tiến sau.</strong> Process Mining cho phép ra quyết định dựa trên dữ liệu thực, không phỏng đoán.</li>
-<li><strong>AI tạo giá trị lớn nhất khi gắn vào đúng điểm nghẽn</strong>, không phải rải đều.</li>
-<li><strong>Human-in-the-loop</strong> giữ cân bằng tốc độ ↔ kiểm soát rủi ro.</li>
+<li><strong>Đo trước, cải tiến sau.</strong> Có dữ liệu thật thì quyết định mới chắc chắn, không phỏng đoán.</li>
+<li><strong>AI hiệu quả nhất khi gắn đúng chỗ nghẽn</strong>, chứ không phải rải đều khắp nơi.</li>
+<li><strong>Vẫn giữ con người trong vòng lặp</strong> để cân bằng giữa tốc độ và kiểm soát rủi ro.</li>
 </ol>
-<h3 id="Khuy%E1%BA%BFn-ngh%E1%BB%8B-l%E1%BB%99-tr%C3%ACnh">Khuyến nghị lộ trình<a class="anchor-link" href="#Khuy%E1%BA%BFn-ngh%E1%BB%8B-l%E1%BB%99-tr%C3%ACnh">¶</a></h3><ol>
-<li>Giai đoạn 1 — AI hóa kiểm tra thông tin &amp; điều kiện (nghẽn lớn nhất).</li>
+<h3 id="%C4%90%E1%BB%81-xu%E1%BA%A5t-l%E1%BB%99-tr%C3%ACnh-%C3%A1p-d%E1%BB%A5ng">Đề xuất lộ trình áp dụng<a class="anchor-link" href="#%C4%90%E1%BB%81-xu%E1%BA%A5t-l%E1%BB%99-tr%C3%ACnh-%C3%A1p-d%E1%BB%A5ng">¶</a></h3><ol>
+<li>Giai đoạn 1 — đưa AI vào kiểm tra thông tin &amp; điều kiện (chỗ nghẽn lớn nhất).</li>
 <li>Giai đoạn 2 — tự động cấp/gửi mã, cảnh báo bất thường.</li>
-<li>Giai đoạn 3 — giám sát liên tục bằng Process Mining (conformance checking) để phát hiện trôi quy trình.</li>
+<li>Giai đoạn 3 — theo dõi liên tục bằng Process Mining để kịp phát hiện quy trình bị lệch.</li>
 </ol>
 <hr/>
-<p><em>Phân tích thực hiện bằng Python + PM4Py trên event log thực tế (1.200 hồ sơ mỗi kịch bản).</em></p>
+<p><em>Nhóm em xin chân thành cảm ơn thầy/cô và các bạn đã lắng nghe!</em></p>
+<p><em>(Phân tích thực hiện bằng Python + PM4Py trên dữ liệu thực tế: 1.200 hồ sơ cho mỗi kịch bản.)</em></p>
 </div>
 </div>
 </div>
