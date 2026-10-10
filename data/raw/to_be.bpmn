@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_TOBE" targetNamespace="https://example.org/khuyen-mai-tobe">
+  <process id="Process_TOBE" name="TO-BE - Đăng ký nhận khuyến mãi có AI" isExecutable="false">
+    <laneSet id="LaneSet_TOBE">
+      <lane id="Lane_Customer" name="Khách hàng">
+        <flowNodeRef>Start</flowNodeRef>
+        <flowNodeRef>Submit</flowNodeRef>
+        <flowNodeRef>Supplement</flowNodeRef>
+        <flowNodeRef>Received</flowNodeRef>
+        <flowNodeRef>EndSuccess</flowNodeRef>
+      </lane>
+      <lane id="Lane_System" name="Hệ thống">
+        <flowNodeRef>Record</flowNodeRef>
+        <flowNodeRef>Eligibility</flowNodeRef>
+        <flowNodeRef>Eligible</flowNodeRef>
+        <flowNodeRef>Issue</flowNodeRef>
+        <flowNodeRef>Send</flowNodeRef>
+      </lane>
+      <lane id="Lane_AI" name="AI / Tự động hóa">
+        <flowNodeRef>CheckInfo</flowNodeRef>
+        <flowNodeRef>Valid</flowNodeRef>
+        <flowNodeRef>Risk</flowNodeRef>
+        <flowNodeRef>ReviewNeeded</flowNodeRef>
+      </lane>
+      <lane id="Lane_Marketing" name="Marketing">
+        <flowNodeRef>ManualReview</flowNodeRef>
+        <flowNodeRef>Approved</flowNodeRef>
+      </lane>
+      <lane id="Lane_CSKH" name="Chăm sóc khách hàng">
+        <flowNodeRef>Request</flowNodeRef>
+        <flowNodeRef>Reject</flowNodeRef>
+        <flowNodeRef>EndReject</flowNodeRef>
+      </lane>
+    </laneSet>
+    <startEvent id="Start" name="Bắt đầu"/>
+    <task id="Submit" name="Gửi đăng ký"/>
+    <serviceTask id="Record" name="Ghi nhận đăng ký"/>
+    <serviceTask id="CheckInfo" name="AI kiểm tra thông tin"/>
+    <exclusiveGateway id="Valid" name="Thông tin hợp lệ?" gatewayDirection="Diverging"/>
+    <sendTask id="Request" name="Yêu cầu bổ sung tự động"/>
+    <task id="Supplement" name="Bổ sung thông tin"/>
+    <serviceTask id="Eligibility" name="Tự động kiểm tra điều kiện"/>
+    <exclusiveGateway id="Eligible" name="Đủ điều kiện?" gatewayDirection="Diverging"/>
+    <serviceTask id="Risk" name="AI đánh giá bất thường"/>
+    <exclusiveGateway id="ReviewNeeded" name="Cần xét duyệt?" gatewayDirection="Diverging"/>
+    <userTask id="ManualReview" name="Marketing xét duyệt ngoại lệ"/>
+    <exclusiveGateway id="Approved" name="Được phê duyệt?" gatewayDirection="Diverging"/>
+    <serviceTask id="Issue" name="Tự động cấp mã"/>
+    <sendTask id="Send" name="Tự động gửi mã khuyến mãi"/>
+    <task id="Received" name="Nhận mã"/>
+    <endEvent id="EndSuccess" name="Hoàn tất"/>
+    <sendTask id="Reject" name="Thông báo từ chối tự động"/>
+    <endEvent id="EndReject" name="Kết thúc từ chối"/>
+    <sequenceFlow id="Flow_01" sourceRef="Start" targetRef="Submit"/>
+    <sequenceFlow id="Flow_02" sourceRef="Submit" targetRef="Record"/>
+    <sequenceFlow id="Flow_03" sourceRef="Record" targetRef="CheckInfo"/>
+    <sequenceFlow id="Flow_04" sourceRef="CheckInfo" targetRef="Valid"/>
+    <sequenceFlow id="Flow_05" sourceRef="Valid" targetRef="Request" name="Không"/>
+    <sequenceFlow id="Flow_06" sourceRef="Request" targetRef="Supplement"/>
+    <sequenceFlow id="Flow_07" sourceRef="Supplement" targetRef="CheckInfo"/>
+    <sequenceFlow id="Flow_08" sourceRef="Valid" targetRef="Eligibility" name="Có"/>
+    <sequenceFlow id="Flow_09" sourceRef="Eligibility" targetRef="Eligible"/>
+    <sequenceFlow id="Flow_10" sourceRef="Eligible" targetRef="Reject" name="Không"/>
+    <sequenceFlow id="Flow_11" sourceRef="Eligible" targetRef="Risk" name="Có"/>
+    <sequenceFlow id="Flow_12" sourceRef="Risk" targetRef="ReviewNeeded"/>
+    <sequenceFlow id="Flow_13" sourceRef="ReviewNeeded" targetRef="Issue" name="Không"/>
+    <sequenceFlow id="Flow_14" sourceRef="ReviewNeeded" targetRef="ManualReview" name="Có"/>
+    <sequenceFlow id="Flow_15" sourceRef="ManualReview" targetRef="Approved"/>
+    <sequenceFlow id="Flow_16" sourceRef="Approved" targetRef="Issue" name="Có"/>
+    <sequenceFlow id="Flow_17" sourceRef="Approved" targetRef="Reject" name="Không"/>
+    <sequenceFlow id="Flow_18" sourceRef="Issue" targetRef="Send"/>
+    <sequenceFlow id="Flow_19" sourceRef="Send" targetRef="Received"/>
+    <sequenceFlow id="Flow_20" sourceRef="Received" targetRef="EndSuccess"/>
+    <sequenceFlow id="Flow_21" sourceRef="Reject" targetRef="EndReject"/>
+  </process>
+  <bpmndi:BPMNDiagram id="Diagram_TOBE">
+    <bpmndi:BPMNPlane id="Plane_TOBE" bpmnElement="Process_TOBE">
+      <bpmndi:BPMNShape id="Shape_Lane_Customer" bpmnElement="Lane_Customer" isHorizontal="true">
+        <dc:Bounds x="80" y="100" width="2670" height="170"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_System" bpmnElement="Lane_System" isHorizontal="true">
+        <dc:Bounds x="80" y="270" width="2670" height="230"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_AI" bpmnElement="Lane_AI" isHorizontal="true">
+        <dc:Bounds x="80" y="500" width="2670" height="190"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_Marketing" bpmnElement="Lane_Marketing" isHorizontal="true">
+        <dc:Bounds x="80" y="690" width="2670" height="160"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Lane_CSKH" bpmnElement="Lane_CSKH" isHorizontal="true">
+        <dc:Bounds x="80" y="850" width="2670" height="170"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Start" bpmnElement="Start">
+        <dc:Bounds x="170" y="158" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Submit" bpmnElement="Submit">
+        <dc:Bounds x="320" y="158" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Record" bpmnElement="Record">
+        <dc:Bounds x="475" y="328" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_CheckInfo" bpmnElement="CheckInfo">
+        <dc:Bounds x="650" y="558" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Valid" bpmnElement="Valid">
+        <dc:Bounds x="835" y="558" width="56" height="56"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Request" bpmnElement="Request">
+        <dc:Bounds x="830" y="905" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Supplement" bpmnElement="Supplement">
+        <dc:Bounds x="1010" y="156" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Eligibility" bpmnElement="Eligibility">
+        <dc:Bounds x="1040" y="328" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Eligible" bpmnElement="Eligible">
+        <dc:Bounds x="1220" y="328" width="56" height="56"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Risk" bpmnElement="Risk">
+        <dc:Bounds x="1390" y="558" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_ReviewNeeded" bpmnElement="ReviewNeeded">
+        <dc:Bounds x="1560" y="558" width="56" height="56"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_ManualReview" bpmnElement="ManualReview">
+        <dc:Bounds x="1740" y="748" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Approved" bpmnElement="Approved">
+        <dc:Bounds x="1910" y="748" width="56" height="56"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Issue" bpmnElement="Issue">
+        <dc:Bounds x="2090" y="328" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Send" bpmnElement="Send">
+        <dc:Bounds x="2260" y="328" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Received" bpmnElement="Received">
+        <dc:Bounds x="2440" y="158" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_EndSuccess" bpmnElement="EndSuccess">
+        <dc:Bounds x="2600" y="158" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_Reject" bpmnElement="Reject">
+        <dc:Bounds x="2100" y="900" width="118" height="72"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Shape_EndReject" bpmnElement="EndReject">
+        <dc:Bounds x="2320" y="910" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Edge_01" bpmnElement="Flow_01">
+        <di:waypoint x="206" y="176.0"/>
+        <di:waypoint x="263.0" y="176.0"/>
+        <di:waypoint x="263.0" y="194.0"/>
+        <di:waypoint x="320" y="194.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_02" bpmnElement="Flow_02">
+        <di:waypoint x="438" y="194.0"/>
+        <di:waypoint x="456.5" y="194.0"/>
+        <di:waypoint x="456.5" y="364.0"/>
+        <di:waypoint x="475" y="364.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_03" bpmnElement="Flow_03">
+        <di:waypoint x="593" y="364.0"/>
+        <di:waypoint x="621.5" y="364.0"/>
+        <di:waypoint x="621.5" y="594.0"/>
+        <di:waypoint x="650" y="594.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_04" bpmnElement="Flow_04">
+        <di:waypoint x="768" y="594.0"/>
+        <di:waypoint x="801.5" y="594.0"/>
+        <di:waypoint x="801.5" y="586.0"/>
+        <di:waypoint x="835" y="586.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_05" bpmnElement="Flow_05">
+        <di:waypoint x="863.0" y="614"/>
+        <di:waypoint x="863.0" y="870"/>
+        <di:waypoint x="889.0" y="870"/>
+        <di:waypoint x="889.0" y="905"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_06" bpmnElement="Flow_06">
+        <di:waypoint x="948" y="941.0"/>
+        <di:waypoint x="1069.0" y="941.0"/>
+        <di:waypoint x="1069.0" y="228"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_07" bpmnElement="Flow_07">
+        <di:waypoint x="1069.0" y="156"/>
+        <di:waypoint x="1069.0" y="75"/>
+        <di:waypoint x="709.0" y="75"/>
+        <di:waypoint x="709.0" y="558"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_08" bpmnElement="Flow_08">
+        <di:waypoint x="891" y="586.0"/>
+        <di:waypoint x="965.5" y="586.0"/>
+        <di:waypoint x="965.5" y="364.0"/>
+        <di:waypoint x="1040" y="364.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_09" bpmnElement="Flow_09">
+        <di:waypoint x="1158" y="364.0"/>
+        <di:waypoint x="1189.0" y="364.0"/>
+        <di:waypoint x="1189.0" y="356.0"/>
+        <di:waypoint x="1220" y="356.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_10" bpmnElement="Flow_10">
+        <di:waypoint x="1248.0" y="384"/>
+        <di:waypoint x="1248.0" y="1045"/>
+        <di:waypoint x="2159.0" y="1045"/>
+        <di:waypoint x="2159.0" y="972"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_11" bpmnElement="Flow_11">
+        <di:waypoint x="1276" y="356.0"/>
+        <di:waypoint x="1333.0" y="356.0"/>
+        <di:waypoint x="1333.0" y="594.0"/>
+        <di:waypoint x="1390" y="594.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_12" bpmnElement="Flow_12">
+        <di:waypoint x="1508" y="594.0"/>
+        <di:waypoint x="1534.0" y="594.0"/>
+        <di:waypoint x="1534.0" y="586.0"/>
+        <di:waypoint x="1560" y="586.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_13" bpmnElement="Flow_13">
+        <di:waypoint x="1616" y="586.0"/>
+        <di:waypoint x="2050" y="586.0"/>
+        <di:waypoint x="2050" y="364.0"/>
+        <di:waypoint x="2090" y="364.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_14" bpmnElement="Flow_14">
+        <di:waypoint x="1616" y="586.0"/>
+        <di:waypoint x="1678.0" y="586.0"/>
+        <di:waypoint x="1678.0" y="784.0"/>
+        <di:waypoint x="1740" y="784.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_15" bpmnElement="Flow_15">
+        <di:waypoint x="1858" y="784.0"/>
+        <di:waypoint x="1884.0" y="784.0"/>
+        <di:waypoint x="1884.0" y="776.0"/>
+        <di:waypoint x="1910" y="776.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_16" bpmnElement="Flow_16">
+        <di:waypoint x="1966" y="776.0"/>
+        <di:waypoint x="2028.0" y="776.0"/>
+        <di:waypoint x="2028.0" y="364.0"/>
+        <di:waypoint x="2090" y="364.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_17" bpmnElement="Flow_17">
+        <di:waypoint x="1938.0" y="804"/>
+        <di:waypoint x="1938.0" y="1060"/>
+        <di:waypoint x="2159.0" y="1060"/>
+        <di:waypoint x="2159.0" y="972"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_18" bpmnElement="Flow_18">
+        <di:waypoint x="2208" y="364.0"/>
+        <di:waypoint x="2234.0" y="364.0"/>
+        <di:waypoint x="2234.0" y="364.0"/>
+        <di:waypoint x="2260" y="364.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_19" bpmnElement="Flow_19">
+        <di:waypoint x="2378" y="364.0"/>
+        <di:waypoint x="2409.0" y="364.0"/>
+        <di:waypoint x="2409.0" y="194.0"/>
+        <di:waypoint x="2440" y="194.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_20" bpmnElement="Flow_20">
+        <di:waypoint x="2558" y="194.0"/>
+        <di:waypoint x="2579.0" y="194.0"/>
+        <di:waypoint x="2579.0" y="176.0"/>
+        <di:waypoint x="2600" y="176.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Edge_21" bpmnElement="Flow_21">
+        <di:waypoint x="2218" y="936.0"/>
+        <di:waypoint x="2320" y="928.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

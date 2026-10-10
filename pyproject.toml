@@ -1,0 +1,15 @@
+[project]
+name = "ai-operations-process-mining"
+version = "0.1.0"
+description = "AI in Operations Management - Process Mining report"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.13",
+    "pm4py>=2.7",
+    "jupyter",
+    "nbformat",
+    "ipykernel",
+]
